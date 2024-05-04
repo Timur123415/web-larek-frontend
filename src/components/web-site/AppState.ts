@@ -1,4 +1,4 @@
-import { View } from '../base/View';
+import { Model } from '../base/Model';
 import { Events, FormErrors, IOrder } from '../../types/index';
 
 export interface IProduct {
@@ -15,7 +15,7 @@ export type CatalogChangeEvent = {
 	catalog: IProduct[];
 };
 
-export class Presenter extends View<Presenter> {
+export class AppState extends Model<AppState> {
 	basket: string[] = [];
 	catalog: IProduct[] = [];
 	order = {

@@ -1,5 +1,5 @@
 import { Component } from '../../base/Component';
-import { IEvents } from '../../base/events';
+import { IEvents } from '../../base/Events';
 import { ensureElement } from '../../../utils/utils';
 import { Events } from '../../../types';
 
@@ -14,6 +14,7 @@ export class Page extends Component<IPage> {
 	protected _catalog: HTMLElement;
 	protected _wrapper: HTMLElement;
 	protected _basket: HTMLElement;
+
 
 	constructor(container: HTMLElement, protected events: IEvents) {
 		super(container);
@@ -38,9 +39,9 @@ export class Page extends Component<IPage> {
 
 	set locked(value: boolean) {
 		if (value) {
-			this._wrapper.classList.add('page__wrapper_locked');
+			this.toggleClass(this._wrapper, 'page__wrapper_locked', true);
 		} else {
-			this._wrapper.classList.remove('page__wrapper_locked');
+			this.toggleClass(this._wrapper, 'page__wrapper_locked', false);
 		}
 	}
 }

@@ -6,17 +6,17 @@ import { Events, IOrder } from './types';
 
 import { cloneTemplate, createElement, ensureElement } from './utils/utils';
 import {
-	Presenter,
+	AppState,
 	CatalogChangeEvent,
 	IProduct,
-} from './components/web-site/Presenter';
+} from './components/web-site/AppState';
 import { Page } from './components/web-site/components/Page';
 import { Modal } from './components/web-site/components/Modal';
-import { Cart } from './components/web-site/components/Cart';
+import { Cart } from './components/web-site/components/Basket';
 import { Order } from './components/web-site/components/Order';
 
 const api = new WebLarekApi(API_URL);
-import EventEmitter from './components/base/events';
+import EventEmitter from './components/base/Events';
 import { BasketItem, CatalogItem } from './components/web-site/components/Product';
 import { Success } from './components/web-site/components/Success';
 
@@ -33,7 +33,7 @@ const basketTemplate = ensureElement<HTMLTemplateElement>('#basket');
 const orderTemplate = ensureElement<HTMLTemplateElement>('#order');
 const contactsTemplate = ensureElement<HTMLTemplateElement>('#contacts');
 
-const appData = new Presenter({}, EventEmitter);
+const appData = new AppState({}, EventEmitter);
 
 
 const page = new Page(document.body, EventEmitter);
@@ -151,7 +151,7 @@ EventEmitter.on(/(^order|^contacts):submit/, () => {
 			console.error(err);
 		})
 		.finally(() => {
-			EventEmitter.emit(Events.CLEAR_ORDER);
+			
 		});
 });
 
@@ -206,7 +206,6 @@ EventEmitter.on(Events.MODAL_OPEN, () => {
 
 EventEmitter.on(Events.MODAL_CLOSE, () => {
 	page.locked = false;
-	appData.clearOrder();
 });
 
 api

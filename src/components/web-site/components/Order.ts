@@ -1,6 +1,6 @@
 import { Form } from '../components/Form';
 import { Events, IOrder } from '../../../types';
-import { IEvents } from '../../base/events';
+import { IEvents } from '../../base/Events';
 export class Order extends Form<IOrder> {
 	protected _altButtons;
 
