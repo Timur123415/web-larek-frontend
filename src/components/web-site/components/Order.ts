@@ -15,9 +15,9 @@ export class Order extends Form<IOrder> {
 			this._altButtons.forEach((button) => {
 				button.addEventListener('click', () => {
 					this._altButtons.forEach((button) => {
-						button.classList.toggle('button_alt-active', false);
+						this.toggleClass(button, 'button_alt-active', false);
 					});
-					button.classList.toggle('button_alt-active', true);
+					this.toggleClass(button, 'button_alt-active', true);
 					this.payment = button.name;
 				});
 			});
